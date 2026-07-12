@@ -47,7 +47,6 @@ def optimize_and_bake(resolution=2048, extrusion=0.05):
     low_poly.scale = (size_x, size_y, size_z)
     bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
 
-    # --- FIX: Context Override for UV Unwrapping ---
     bpy.ops.object.mode_set(mode='EDIT')
     bpy.ops.mesh.select_all(action='SELECT')
     
@@ -80,8 +79,7 @@ def optimize_and_bake(resolution=2048, extrusion=0.05):
     normal_node = nodes.new('ShaderNodeTexImage')
     normal_node.image = normal_img
     normal_node.location = (-400, -200)
-
-    # --- FIX: Aggressive Ray Distance Baking ---
+    
     bpy.ops.object.select_all(action='DESELECT')
     high_poly.select_set(True)
     low_poly.select_set(True)
